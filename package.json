@@ -1,0 +1,35 @@
+{
+  "name": "osme",
+  "version": "0.0.0",
+  "description": "smells",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamtimleonard/osme.git"
+  },
+  "keywords": [
+    "smells"
+  ],
+  "author": "iamtimleonard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamtimleonard/osme/issues"
+  },
+  "homepage": "https://github.com/iamtimleonard/osme#readme",
+  "dependencies": {
+    "next": "^15.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@types/react": "^18.2.79",
+    "typescript": "5.4.5"
+  }
+}
