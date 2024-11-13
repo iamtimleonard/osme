@@ -6,46 +6,48 @@
 
 .container {
   background-color: var(--main-white);
-  text-align: center;
   height: 100%;
+  overflow: scroll;
 }
 
-.formControl {
-  width: 50%;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
+.welcome {
+  color: var(--secondary-red);
+  margin: 1rem 0.25rem;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
+.listContainer {
+  margin: 1rem 0;
 }
 
-.title {
+.rowTitle {
   color: var(--dark-gray);
-  padding: 25px;
 }
 
-.label {
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+  margin: 0.8rem 0;
+}
+
+.rowTitle {
   color: var(--medium-dark-gray);
-  padding: 5px 0;
 }
 
-.wordmark {
-  color: var(--secondary-green);
+.itemList {
+  list-style: none;
+  display: flex;
+  overflow: scroll;
 }
 
-.input {
-  border: 1px solid var(--light-gray);
-  border-radius: 5px;
-  padding: 5px;
+.listItem {
+  margin: 0 0.25rem;
 }
 
 .primaryButton {
-  color: var(--light-gray);
   background-color: var(--secondary-green);
-  padding: 5px;
+  color: var(--main-white);
+  padding: 1rem;
   border-radius: 5px;
-  margin-top: 100px;
+  margin: 0.8rem 0.25rem;
 }

@@ -1,0 +1,53 @@
+.container {
+  background-color: var(--main-white);
+  text-align: center;
+  height: 100%;
+}
+
+.formControl {
+  width: 300px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: var(--dark-gray);
+  padding: 25px 0;
+}
+
+.label {
+  color: var(--medium-dark-gray);
+  padding: 5px 0;
+}
+
+.wordmark {
+  color: var(--secondary-green);
+}
+
+.input {
+  border: 1px solid var(--medium-light-gray);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.primaryButton {
+  color: var(--light-gray);
+  background-color: var(--secondary-green);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+
+.secondaryButton {
+  color: var(--secondary-green);
+  background-color: var(--main-white);
+  padding: 5x;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-green);
+}
