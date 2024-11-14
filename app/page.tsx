@@ -26,9 +26,9 @@ export default function () {
   return (
     <main className={styles.container}>
       <h4 className={styles.welcome}>Hello, Chelsea.</h4>
-      <ScentRow title="Your scent library" items={LIBRARY} />
-      <ScentRow title="Recently worn" items={SOTD} />
-      <ScentRow title="Wish list" items={WISHLIST} />
+      <ScentRow title="Your scent library" items={LIBRARY} link="/library" />
+      <ScentRow title="Recently worn" items={SOTD} link="" />
+      <ScentRow title="Wish list" items={WISHLIST} link="" />
     </main>
   );
 }

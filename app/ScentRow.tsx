@@ -7,12 +7,20 @@ type Item = {
   alt: string;
 };
 
-export default function ({ items, title }: { items: Item[]; title: string }) {
+export default function ({
+  items,
+  title,
+  link,
+}: {
+  items: Item[];
+  title: string;
+  link: string;
+}) {
   return (
     <div className={styles.listContainer}>
       <div className={styles.listHeader}>
         <h3 className={styles.rowTitle}>{title}</h3>
-        <Link href="">See all</Link>
+        <Link href={link}>See all</Link>
       </div>
       <ol className={styles.itemList}>
         {items.map(({ src, alt }) => (
