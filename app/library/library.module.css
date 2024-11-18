@@ -4,6 +4,11 @@
   overflow: scroll;
 }
 
+.width {
+  max-width: 50rem;
+  margin: auto;
+}
+
 .header {
   color: var(--medium-dark-gray);
   margin: 1rem 0 2rem 1rem;
