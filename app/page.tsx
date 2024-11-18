@@ -5,6 +5,7 @@ import bottle2 from "../public/bottle2.jpg";
 import bottle3 from "../public/bottle3.jpg";
 import bottle4 from "../public/bottle4.jpg";
 import bottle5 from "../public/bottle5.webp";
+import Link from "next/link";
 
 const LIBRARY = [
   { src: bottle1, alt: "Bottle1" },
@@ -25,10 +26,16 @@ const WISHLIST = [
 export default function () {
   return (
     <main className={styles.container}>
-      <h4 className={styles.welcome}>Hello, Chelsea.</h4>
-      <ScentRow title="Your scent library" items={LIBRARY} link="/library" />
-      <ScentRow title="Recently worn" items={SOTD} link="" />
-      <ScentRow title="Wish list" items={WISHLIST} link="" />
+      <div className={styles.width}>
+        <h4 className={styles.welcome}>Hello, Chelsea.</h4>
+        <ScentRow title="Your scent library" items={LIBRARY} link="/library">
+          <Link href="/library/add" className={styles.primaryButton}>
+            + Add new
+          </Link>
+        </ScentRow>
+        <ScentRow title="Recently worn" items={SOTD} link="" />
+        <ScentRow title="Wish list" items={WISHLIST} link="" />
+      </div>
     </main>
   );
 }

@@ -1,21 +1,20 @@
 import Link from "next/link";
 import styles from "./home.module.css";
 import Image from "next/image";
+import { PropsWithChildren } from "react";
 
 type Item = {
   src: any;
   alt: string;
 };
 
-export default function ({
-  items,
-  title,
-  link,
-}: {
+type Props = PropsWithChildren<{
   items: Item[];
   title: string;
   link: string;
-}) {
+}>;
+
+export default function ({ items, title, link, children }: Props) {
   return (
     <div className={styles.listContainer}>
       <div className={styles.listHeader}>
@@ -34,7 +33,7 @@ export default function ({
           </li>
         ))}
       </ol>
-      <button className={styles.primaryButton}>+ Add new</button>
+      {children}
     </div>
   );
 }

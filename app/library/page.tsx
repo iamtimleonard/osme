@@ -4,7 +4,7 @@ import bottle2 from "../../public/bottle2.jpg";
 import bottle3 from "../../public/bottle3.jpg";
 import bottle4 from "../../public/bottle4.jpg";
 import bottle5 from "../../public/bottle5.webp";
-import Image from "next/image";
+import ScentList from "./ScentList";
 
 const LIBRARY = [
   {
@@ -110,7 +110,7 @@ const PreferenceHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
+export const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -139,47 +139,21 @@ const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function () {
   return (
     <main className={styles.container}>
-      <h2 className={styles.header}>Your scent library</h2>
-      <div className={styles.searchBar}>
-        <label htmlFor="search">Enter name or keyword</label>
-        <div className={styles.formControl}>
-          <div className={styles.searchIcon}>
-            <Search01Icon />
-            <input type="text" name="search" className={styles.input} />
+      <div className={styles.width}>
+        <h2 className={styles.header}>Your scent library</h2>
+        <div className={styles.searchBar}>
+          <label htmlFor="search">Enter name or keyword</label>
+          <div className={styles.formControl}>
+            <div className={styles.searchIcon}>
+              <Search01Icon />
+              <input type="text" name="search" className={styles.input} />
+            </div>
+            <PreferenceHorizontalIcon />
           </div>
-          <PreferenceHorizontalIcon />
         </div>
+        <div className={styles.library}></div>
+        <ScentList list={LIBRARY} />
       </div>
-      <div className={styles.library}></div>
-      {LIBRARY.map(({ image, name, house }, idx) => (
-        <div className={styles.row} key={idx}>
-          <Image
-            src={image}
-            alt={`${name} by ${house}`}
-            height={125}
-            className={styles.bottleImage}
-          />
-          <div className={styles.title}>
-            <p>{name}</p>
-            <p>{house}</p>
-          </div>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9 18l6-6-6-6"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      ))}
     </main>
   );
 }
