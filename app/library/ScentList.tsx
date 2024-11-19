@@ -7,20 +7,21 @@ type Props = {
     name: string;
     house: string;
   }[];
+  handler?: any;
 };
 
-export default function ({ list }: Props) {
-  return list.map(({ image, name, house }, idx) => (
-    <div className={styles.row} key={idx}>
+export default function ({ list, handler }: Props) {
+  return list.map((scent, idx) => (
+    <div className={styles.row} key={idx} onClick={() => handler({ ...scent })}>
       <Image
-        src={image}
-        alt={`${name} by ${house}`}
+        src={scent.image}
+        alt={`${name} by $scent.{house}`}
         height={125}
         className={styles.bottleImage}
       />
       <div className={styles.title}>
-        <p>{name}</p>
-        <p>{house}</p>
+        <p>{scent.name}</p>
+        <p>{scent.house}</p>
       </div>
       <svg
         width="24"
