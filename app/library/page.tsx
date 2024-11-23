@@ -1,3 +1,6 @@
+"use client";
+
+import Webcam from "react-webcam";
 import styles from "./library.module.css";
 import bottle1 from "../../public/bottle1.jpg";
 import bottle2 from "../../public/bottle2.jpg";
@@ -5,6 +8,8 @@ import bottle3 from "../../public/bottle3.jpg";
 import bottle4 from "../../public/bottle4.jpg";
 import bottle5 from "../../public/bottle5.webp";
 import ScentList from "./ScentList";
+import { useCallback, useRef, useState } from "react";
+import { createWorker } from "tesseract.js";
 
 const LIBRARY = [
   {
@@ -136,7 +141,38 @@ export const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const videoConstraints = {
+  width: 80,
+  height: 40,
+  facingMode: "user",
+};
+
+const WebcamCapture = () => {
+  const webcamRef = useRef(null);
+  const capture = useCallback(async () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    const worker = await createWorker("eng");
+    const ret = await worker.recognize(imageSrc);
+    console.log(ret.data.text);
+    worker.terminate();
+  }, [webcamRef]);
+  return (
+    <>
+      <Webcam
+        audio={false}
+        height={80}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width={320}
+        videoConstraints={videoConstraints}
+      />
+      <button onClick={capture}>Capture photo</button>
+    </>
+  );
+};
+
 export default function () {
+  const [cameraOpen, setCameraOpen] = useState(false);
   return (
     <main className={styles.container}>
       <div className={styles.width}>
@@ -150,6 +186,12 @@ export default function () {
             </div>
             <PreferenceHorizontalIcon />
           </div>
+          <button onClick={() => setCameraOpen(true)}>Use camera</button>
+          {cameraOpen && (
+            <div>
+              <WebcamCapture />
+            </div>
+          )}
         </div>
         <div className={styles.library}></div>
         <ScentList list={LIBRARY} />
