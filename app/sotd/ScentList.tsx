@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./library.module.css";
+import styles from "./sotd.module.css";
 
 type Props = {
   list: {
