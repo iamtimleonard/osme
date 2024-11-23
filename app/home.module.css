@@ -1,12 +1,12 @@
 .main {
   background-color: var(--main-green);
   height: 100vh;
-  padding-top: 50px;
+  padding-top: 3rem;
 }
 
 .container {
   background-color: var(--main-white);
-  height: 100%;
+  height: calc(100vh - 8rem);
   overflow: scroll;
 }
 
@@ -58,4 +58,20 @@
   display: block;
   width: fit-content;
   text-decoration: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--main-white);
+  height: 5rem;
+  width: 100%;
+}
+
+.footerList {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 }
