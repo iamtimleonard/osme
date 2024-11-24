@@ -1,0 +1,60 @@
+.container {
+  background-color: var(--main-white);
+  height: 100%;
+  overflow: scroll;
+}
+
+.width {
+  max-width: 50rem;
+  margin: auto;
+}
+
+.header {
+  color: var(--medium-dark-gray);
+  margin: 1rem 0 2rem 1rem;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  color: var(--medium-dark-gray);
+}
+
+.formControl {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.searchIcon {
+  border: 1px solid var(--medium-dark-gray);
+  border-radius: 5px;
+  padding: 0.5rem;
+  flex-grow: 1;
+}
+
+.input {
+  margin: auto;
+  height: 50%;
+}
+
+.bottleImage {
+  border-radius: 5px 0 0 5px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-white);
+  margin: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.title {
+  flex-grow: 1;
+  color: var(--medium-dark-gray);
+  margin: 0 1rem;
+}

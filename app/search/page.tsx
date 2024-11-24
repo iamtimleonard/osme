@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Search01Icon } from "../page";
-import styles from "./library-add.module.css";
-import ScentList from "../ScentList";
-import bottle1 from "../../../public/bottle1.jpg";
-import bottle2 from "../../../public/bottle2.jpg";
-import bottle3 from "../../../public/bottle3.jpg";
-import bottle4 from "../../../public/bottle4.jpg";
-import bottle5 from "../../../public/bottle5.webp";
+import { Search01Icon } from "../library/page";
+import styles from "./search.module.css";
+import ScentList from "./ScentList";
+import bottle1 from "../../public/bottle1.jpg";
+import bottle2 from "../../public/bottle2.jpg";
+import bottle3 from "../../public/bottle3.jpg";
+import bottle4 from "../../public/bottle4.jpg";
+import bottle5 from "../../public/bottle5.webp";
 import Link from "next/link";
 import Image from "next/image";
 

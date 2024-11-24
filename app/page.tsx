@@ -39,7 +39,6 @@ export default function () {
           <ScentRow title="Wish list" items={WISHLIST} link="" />
         </div>
       </main>
-      <Footer />
     </>
   );
 }

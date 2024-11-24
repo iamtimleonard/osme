@@ -51,13 +51,13 @@ export default function () {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/">Community</Link>
+          <Link href="/library">Library</Link>
         </li>
         <li>
-          <Link href="/library/add">Search</Link>
+          <Link href="/wishlist">Wishlist</Link>
         </li>
         <li>
-          <Link href="/">Account</Link>
+          <Link href="/search">Search</Link>
         </li>
       </ul>
     </footer>

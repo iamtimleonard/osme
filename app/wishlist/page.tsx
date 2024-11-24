@@ -1,4 +1,4 @@
-import styles from "./library.module.css";
+import styles from "./wishlist.module.css";
 import ScentList from "./ScentList";
 
 const LIBRARY = [];
@@ -109,7 +109,7 @@ export default function () {
   return (
     <main className={styles.container}>
       <div className={styles.width}>
-        <h2 className={styles.header}>Your scent library</h2>
+        <h2 className={styles.header}>Your wishlist</h2>
         <div className={styles.searchBar}>
           <label htmlFor="search">Enter name or keyword</label>
           <div className={styles.formControl}>

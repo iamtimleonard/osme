@@ -88,3 +88,23 @@
 .backArrow {
   cursor: pointer;
 }
+
+.bottleImage {
+  border-radius: 5px 0 0 5px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-white);
+  margin: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.title {
+  flex-grow: 1;
+  color: var(--medium-dark-gray);
+  margin: 0 1rem;
+}

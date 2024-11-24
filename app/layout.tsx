@@ -24,7 +24,10 @@ export default function RootLayout({
         ></link>
         {children}
       </Head>
-      <body className={styles.main}>{children}</body>
+      <body className={styles.main}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
