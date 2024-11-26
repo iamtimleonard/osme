@@ -2,6 +2,7 @@ import Head from "next/head";
 import "./global.css";
 import styles from "./home.module.css";
 import Footer from "./Footer";
+import { UserProvider } from "./providers";
 
 export const metadata = {
   title: "osme",
@@ -25,7 +26,7 @@ export default function RootLayout({
         {children}
       </Head>
       <body className={styles.main}>
-        {children}
+        <UserProvider>{children}</UserProvider>
         <Footer />
       </body>
     </html>
