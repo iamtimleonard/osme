@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Search01Icon } from "../library/page";
 import styles from "./search.module.css";
 import ScentList from "./ScentList";
@@ -11,47 +11,44 @@ import bottle4 from "../../public/bottle4.jpg";
 import bottle5 from "../../public/bottle5.webp";
 import Link from "next/link";
 import Image from "next/image";
+import { ScentReducerContext } from "../providers";
 
 const LIBRARY = [
   {
+    id: 1,
     image: bottle1,
     name: "Chance",
     house: "Chanel",
-    topNotes: [],
-    baseNotes: [],
-    heartNotes: [],
+    topNotes: ["Pink Peppercorn"],
+    baseNotes: ["Jasmine", "Iris"],
+    heartNotes: ["Patchouli", "Musk", "Vanilla"],
   },
   {
+    id: 2,
     image: bottle2,
     name: "Debaser",
     house: "D.S. & Durga",
-    topNotes: [],
-    baseNotes: [],
-    heartNotes: [],
+    topNotes: ["Green notes", "Bergamot", "Pear"],
+    baseNotes: ["Fig", "Coconut", "Iris"],
+    heartNotes: ["Wood", "Tonka", "Moss"],
   },
   {
+    id: 3,
     image: bottle3,
     name: "Little Flower",
     house: "Regime des Fleurs",
-    topNotes: [],
-    baseNotes: [],
-    heartNotes: [],
+    topNotes: ["Rose", "Pomelo"],
+    baseNotes: ["Honeysuckle"],
+    heartNotes: ["Palo Santo", "Incense"],
   },
   {
+    id: 4,
     image: bottle4,
     name: "Hwyl",
     house: "Aesop",
-    topNotes: [],
-    baseNotes: [],
-    heartNotes: [],
-  },
-  {
-    image: bottle5,
-    name: "Chance",
-    house: "Chanel",
-    topNotes: [],
-    baseNotes: [],
-    heartNotes: [],
+    topNotes: ["Spice", "Thyme"],
+    baseNotes: ["Cypress", "Wood"],
+    heartNotes: ["Vetiver", "Oakmoss"],
   },
 ];
 
@@ -115,6 +112,7 @@ const ArrowLeft = ({ setScentChoice }) => (
 );
 
 const PerfumeView = ({
+  id,
   name,
   house,
   topNotes,
@@ -123,6 +121,29 @@ const PerfumeView = ({
   image,
   setScentChoice,
 }) => {
+  const dispatch = useContext(ScentReducerContext);
+
+  const libraryAdd = () => {
+    dispatch({
+      type: "library:add",
+      payload: { id, name, house, topNotes, heartNotes, image },
+    });
+  };
+
+  const wishlistAdd = () => {
+    dispatch({
+      type: "wishlist:add",
+      payload: { id, name, house, topNotes, heartNotes, image },
+    });
+  };
+
+  const scentOfTheDayAdd = () => {
+    dispatch({
+      type: "scentOfTheDay:add",
+      payload: { id, name, house, topNotes, heartNotes, image },
+    });
+  };
+
   return (
     <div className={styles.width}>
       <ArrowLeft setScentChoice={setScentChoice} /> <p>Scent Details</p>
@@ -132,6 +153,30 @@ const PerfumeView = ({
       <p>Top notes: {topNotes.join(", ")}</p>
       <p>Heart notes: {heartNotes.join(", ")}</p>
       <p>Base notes: {baseNotes.join(", ")}</p>
+      <button
+        onClick={() => {
+          libraryAdd();
+          alert("added to library!");
+        }}
+      >
+        Add to library
+      </button>
+      <button
+        onClick={() => {
+          wishlistAdd();
+          alert("added to wishlist!");
+        }}
+      >
+        Add to wishlist
+      </button>
+      <button
+        onClick={() => {
+          scentOfTheDayAdd();
+          alert("added scent of the day@!");
+        }}
+      >
+        Add Scent of the day
+      </button>
     </div>
   );
 };
@@ -172,6 +217,7 @@ export default function () {
     <main className={styles.container}>
       {scentChoice ? (
         <PerfumeView
+          id={scentChoice.id}
           name={scentChoice.name}
           house={scentChoice.house}
           image={scentChoice.image}

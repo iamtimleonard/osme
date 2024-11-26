@@ -1,38 +1,9 @@
-import styles from "./sotd.module.css";
-import bottle1 from "../../public/bottle1.jpg";
-import bottle2 from "../../public/bottle2.jpg";
-import bottle3 from "../../public/bottle3.jpg";
-import bottle4 from "../../public/bottle4.jpg";
-import bottle5 from "../../public/bottle5.webp";
-import ScentList from "./ScentList";
+"use client";
 
-const LIBRARY = [
-  {
-    image: bottle1,
-    name: "Chance",
-    house: "Chanel",
-  },
-  {
-    image: bottle2,
-    name: "Debaser",
-    house: "D.S. & Durga",
-  },
-  {
-    image: bottle3,
-    name: "Little Flower",
-    house: "Regime des Fleurs",
-  },
-  {
-    image: bottle4,
-    name: "Hwyl",
-    house: "Aesop",
-  },
-  {
-    image: bottle5,
-    name: "Chance",
-    house: "Chanel",
-  },
-];
+import styles from "./sotd.module.css";
+import ScentList from "./ScentList";
+import { useContext } from "react";
+import { ScentContext } from "../providers";
 
 const PreferenceHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -137,6 +108,7 @@ export const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function () {
+  const scents = useContext(ScentContext);
   return (
     <main className={styles.container}>
       <div className={styles.width}>
@@ -152,7 +124,7 @@ export default function () {
           </div>
         </div>
         <div className={styles.library}></div>
-        <ScentList list={LIBRARY} />
+        <ScentList list={scents.scentOfTheDay} />
       </div>
     </main>
   );

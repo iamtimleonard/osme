@@ -1,7 +1,9 @@
+"use client";
+
+import { useContext, useState } from "react";
 import styles from "./library.module.css";
 import ScentList from "./ScentList";
-
-const LIBRARY = [];
+import { ScentContext } from "../providers";
 
 const PreferenceHorizontalIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -106,6 +108,8 @@ export const Search01Icon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function () {
+  const scents = useContext(ScentContext);
+  const [scentChoice, setScentChoice] = useState(null);
   return (
     <main className={styles.container}>
       <div className={styles.width}>
@@ -121,7 +125,7 @@ export default function () {
           </div>
         </div>
         <div className={styles.library}></div>
-        <ScentList list={LIBRARY} />
+        <ScentList list={scents.library} handler={setScentChoice} />
       </div>
     </main>
   );
