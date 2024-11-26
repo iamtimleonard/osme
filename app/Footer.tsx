@@ -57,6 +57,9 @@ export default function () {
           <Link href="/wishlist">Wishlist</Link>
         </li>
         <li>
+          <Link href="/sotd">SOTD</Link>
+        </li>
+        <li>
           <Link href="/search">Search</Link>
         </li>
       </ul>
