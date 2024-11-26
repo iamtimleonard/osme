@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styles from "./wishlist.module.css";
+import { ChevronRight } from "../../components";
 
 type Props = {
   list: {
@@ -25,21 +26,7 @@ export default function ({ list, handler }: Props) {
         <p>{scent.name}</p>
         <p>{scent.house}</p>
       </div>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M9 18l6-6-6-6"
-          stroke="black"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <ChevronRight />
     </div>
   ));
 }

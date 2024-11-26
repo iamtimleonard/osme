@@ -1,16 +1,15 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { Search01Icon } from "../library/page";
 import styles from "./search.module.css";
 import ScentList from "./ScentList";
 import bottle1 from "../../public/bottle1.jpg";
 import bottle2 from "../../public/bottle2.jpg";
 import bottle3 from "../../public/bottle3.jpg";
 import bottle4 from "../../public/bottle4.jpg";
-import bottle5 from "../../public/bottle5.webp";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowLeft, MagnifyingGlass } from "../../components";
 import { ScentReducerContext } from "../providers";
 
 const LIBRARY = [
@@ -81,36 +80,6 @@ const X = () => (
   </svg>
 );
 
-const ArrowLeft = ({ setScentChoice }) => (
-  <svg
-    width="32"
-    height="24"
-    viewBox="0 0 32 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    onClick={() => setScentChoice(null)}
-    className={styles.backArrow}
-  >
-    <path
-      d="M10 12l6-6M10 12l6 6"
-      stroke="black"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-
-    <line
-      x1="10"
-      y1="12"
-      x2="30"
-      y2="12"
-      stroke="black"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 const PerfumeView = ({
   id,
   name,
@@ -126,21 +95,21 @@ const PerfumeView = ({
   const libraryAdd = () => {
     dispatch({
       type: "library:add",
-      payload: { id, name, house, topNotes, heartNotes, image },
+      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
     });
   };
 
   const wishlistAdd = () => {
     dispatch({
       type: "wishlist:add",
-      payload: { id, name, house, topNotes, heartNotes, image },
+      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
     });
   };
 
   const scentOfTheDayAdd = () => {
     dispatch({
       type: "scentOfTheDay:add",
-      payload: { id, name, house, topNotes, heartNotes, image },
+      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
     });
   };
 
@@ -192,7 +161,7 @@ const ListSearch = ({ setScentChoice, input, setInput }) => {
         <label htmlFor="search">Enter name or keyword</label>
         <div className={styles.formControl}>
           <div className={styles.searchIcon}>
-            <Search01Icon />
+            <MagnifyingGlass />
             <input
               type="text"
               name="search"
