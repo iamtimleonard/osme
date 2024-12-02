@@ -6,7 +6,7 @@
 
 .container {
   background-color: var(--main-white);
-  height: 100%;
+  height: calc(100vh - 8rem);
   overflow: scroll;
 }
 

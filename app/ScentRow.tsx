@@ -6,6 +6,7 @@ import { PropsWithChildren } from "react";
 type Item = {
   image: string;
   alt: string;
+  id: number;
 };
 
 type Props = PropsWithChildren<{
@@ -22,8 +23,8 @@ export default function ({ items, title, link, children }: Props) {
         <Link href={link}>See all</Link>
       </div>
       <ol className={styles.itemList}>
-        {items.map(({ image, alt }) => (
-          <li className={styles.listItem} key={alt}>
+        {items.map(({ image, alt, id }) => (
+          <li className={styles.listItem} key={id}>
             <img
               alt={alt}
               src={image}
