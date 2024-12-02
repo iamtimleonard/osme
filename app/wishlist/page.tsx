@@ -26,7 +26,7 @@ const PerfumeView = ({
       <ArrowLeft setScentChoice={setScentChoice} /> <p>Scent Details</p>
       <h3>{name}</h3>
       <p>{house}</p>
-      <Image src={image} alt={name} width={300} />
+      <img src={image} alt={name} className={styles.bottleImage} />
       <p>Top notes: {topNotes.join(", ")}</p>
       <p>Heart notes: {heartNotes.join(", ")}</p>
       <p>Base notes: {baseNotes.join(", ")}</p>

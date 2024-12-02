@@ -1,55 +1,12 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./search.module.css";
 import ScentList from "./ScentList";
-import bottle1 from "../../public/bottle1.jpg";
-import bottle2 from "../../public/bottle2.jpg";
-import bottle3 from "../../public/bottle3.jpg";
-import bottle4 from "../../public/bottle4.jpg";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, MagnifyingGlass } from "../../components";
 import { ScentReducerContext } from "../providers";
-
-const LIBRARY = [
-  {
-    id: 1,
-    image: bottle1,
-    name: "Chance",
-    house: "Chanel",
-    topNotes: ["Pink Peppercorn"],
-    baseNotes: ["Jasmine", "Iris"],
-    heartNotes: ["Patchouli", "Musk", "Vanilla"],
-  },
-  {
-    id: 2,
-    image: bottle2,
-    name: "Debaser",
-    house: "D.S. & Durga",
-    topNotes: ["Green notes", "Bergamot", "Pear"],
-    baseNotes: ["Fig", "Coconut", "Iris"],
-    heartNotes: ["Wood", "Tonka", "Moss"],
-  },
-  {
-    id: 3,
-    image: bottle3,
-    name: "Little Flower",
-    house: "Regime des Fleurs",
-    topNotes: ["Rose", "Pomelo"],
-    baseNotes: ["Honeysuckle"],
-    heartNotes: ["Palo Santo", "Incense"],
-  },
-  {
-    id: 4,
-    image: bottle4,
-    name: "Hwyl",
-    house: "Aesop",
-    topNotes: ["Spice", "Thyme"],
-    baseNotes: ["Cypress", "Wood"],
-    heartNotes: ["Vetiver", "Oakmoss"],
-  },
-];
 
 const X = () => (
   <svg
@@ -118,10 +75,10 @@ const PerfumeView = ({
       <ArrowLeft setScentChoice={setScentChoice} /> <p>Scent Details</p>
       <h3>{name}</h3>
       <p>{house}</p>
-      <Image src={image} alt={name} width={300} />
-      <p>Top notes: {topNotes.join(", ")}</p>
-      <p>Heart notes: {heartNotes.join(", ")}</p>
-      <p>Base notes: {baseNotes.join(", ")}</p>
+      <img src={image} alt={name} className={styles.image} />
+      <p>Top notes: {topNotes?.join(", ")}</p>
+      <p>Heart notes: {heartNotes?.join(", ")}</p>
+      <p>Base notes: {baseNotes?.join(", ")}</p>
       <button
         onClick={() => {
           libraryAdd();
@@ -150,10 +107,19 @@ const PerfumeView = ({
   );
 };
 
-const ListSearch = ({ setScentChoice, input, setInput }) => {
+const ListSearch = ({ setScentChoice }) => {
+  const [input, setInput] = useState("");
+  const [scentList, setScentList] = useState([]);
+
+  const handleInput = async () => {
+    const res = await fetch(`${process.env.API_HOST}/scents`);
+    const scents = await res.json();
+    setScentList(scents);
+  };
+
   return (
     <>
-      <Link href="/library">
+      <Link href="/">
         <X />
       </Link>
       <p>Select a scent to add to your library</p>
@@ -169,11 +135,12 @@ const ListSearch = ({ setScentChoice, input, setInput }) => {
               value={input}
               onChange={(event) => {
                 setInput(event.target.value);
+                !scentList.length ? handleInput() : null;
               }}
             />
           </div>
         </div>
-        {input && <ScentList list={LIBRARY} handler={setScentChoice} />}
+        {input && <ScentList list={scentList} handler={setScentChoice} />}
       </div>
     </>
   );
@@ -181,7 +148,7 @@ const ListSearch = ({ setScentChoice, input, setInput }) => {
 
 export default function () {
   const [scentChoice, setScentChoice] = useState(null);
-  const [input, setInput] = useState("");
+
   return (
     <main className={styles.container}>
       {scentChoice ? (
@@ -196,11 +163,7 @@ export default function () {
           setScentChoice={setScentChoice}
         />
       ) : (
-        <ListSearch
-          setScentChoice={setScentChoice}
-          input={input}
-          setInput={setInput}
-        />
+        <ListSearch setScentChoice={setScentChoice} />
       )}
     </main>
   );

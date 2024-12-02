@@ -31,12 +31,22 @@ export default function () {
         <div className={styles.width}>
           <h4 className={styles.welcome}>Hello, Chelsea.</h4>
           <ScentRow title="Your scent library" items={LIBRARY} link="/library">
-            <Link href="/library/add" className={styles.primaryButton}>
+            <Link href="/search" className={styles.primaryButton}>
               + Add new
             </Link>
           </ScentRow>
-          <ScentRow title="Recently worn" items={SOTD} link="/sotd" />
-          <ScentRow title="Wish list" items={WISHLIST} link="" />
+          <ScentRow title="Recently worn" items={SOTD} link="/sotd">
+            {" "}
+            <Link href="/search" className={styles.primaryButton}>
+              + Add new
+            </Link>
+          </ScentRow>
+          <ScentRow title="Wish list" items={WISHLIST} link="">
+            {" "}
+            <Link href="/search" className={styles.primaryButton}>
+              + Add new
+            </Link>
+          </ScentRow>
         </div>
       </main>
     </>

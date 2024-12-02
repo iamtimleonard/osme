@@ -108,3 +108,7 @@
   color: var(--medium-dark-gray);
   margin: 0 1rem;
 }
+
+.image {
+  height: 125px;
+}

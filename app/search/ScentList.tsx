@@ -16,12 +16,7 @@ type Props = {
 export default function ({ list, handler }: Props) {
   return list.map((scent, idx) => (
     <div className={styles.row} key={idx} onClick={() => handler({ ...scent })}>
-      <Image
-        src={scent.image}
-        alt={`${scent.name} by ${scent.house}`}
-        height={125}
-        className={styles.bottleImage}
-      />
+      <img src={scent.image} className={styles.image} />
       <div className={styles.title}>
         <p>{scent.name}</p>
         <p>{scent.house}</p>
