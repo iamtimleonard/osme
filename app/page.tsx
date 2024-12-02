@@ -1,48 +1,38 @@
+"use client";
+
 import styles from "./home.module.css";
 import ScentRow from "./ScentRow";
-import bottle1 from "../public/bottle1.jpg";
-import bottle2 from "../public/bottle2.jpg";
-import bottle3 from "../public/bottle3.jpg";
-import bottle4 from "../public/bottle4.jpg";
-import bottle5 from "../public/bottle5.webp";
 import Link from "next/link";
-import Footer from "./Footer";
-
-const LIBRARY = [
-  { src: bottle1, alt: "Bottle1" },
-  { src: bottle2, alt: "Bottle2" },
-  { src: bottle3, alt: "Bottle3" },
-];
-const SOTD = [
-  { src: bottle4, alt: "Bottle4" },
-  { src: bottle5, alt: "Bottle5" },
-  { src: bottle1, alt: "Bottle1" },
-];
-const WISHLIST = [
-  { src: bottle3, alt: "Bottle3" },
-  { src: bottle4, alt: "Bottle4" },
-  { src: bottle5, alt: "Bottle5" },
-];
+import { useContext } from "react";
+import { ScentContext } from "./providers";
 
 export default function () {
+  const scents = useContext(ScentContext);
+  console.log(scents);
   return (
     <>
       <main className={styles.container}>
         <div className={styles.width}>
           <h4 className={styles.welcome}>Hello, Chelsea.</h4>
-          <ScentRow title="Your scent library" items={LIBRARY} link="/library">
+          <ScentRow
+            title="Your scent library"
+            items={scents.library}
+            link="/library"
+          >
             <Link href="/search" className={styles.primaryButton}>
               + Add new
             </Link>
           </ScentRow>
-          <ScentRow title="Recently worn" items={SOTD} link="/sotd">
-            {" "}
+          <ScentRow
+            title="Recently worn"
+            items={scents.scentOfTheDay}
+            link="/sotd"
+          >
             <Link href="/search" className={styles.primaryButton}>
               + Add new
             </Link>
           </ScentRow>
-          <ScentRow title="Wish list" items={WISHLIST} link="">
-            {" "}
+          <ScentRow title="Wish list" items={scents.wishlist} link="/wishlist">
             <Link href="/search" className={styles.primaryButton}>
               + Add new
             </Link>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { PropsWithChildren } from "react";
 
 type Item = {
-  src: any;
+  image: string;
   alt: string;
 };
 
@@ -22,13 +22,12 @@ export default function ({ items, title, link, children }: Props) {
         <Link href={link}>See all</Link>
       </div>
       <ol className={styles.itemList}>
-        {items.map(({ src, alt }) => (
+        {items.map(({ image, alt }) => (
           <li className={styles.listItem} key={alt}>
-            <Image
+            <img
               alt={alt}
-              src={src}
-              height={200}
-              style={{ borderRadius: "15px" }}
+              src={image}
+              style={{ borderRadius: "15px", height: "200px" }}
             />
           </li>
         ))}

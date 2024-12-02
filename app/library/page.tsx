@@ -9,7 +9,6 @@ import {
   MagnifyingGlass,
   PreferenceHorizontalIcon,
 } from "../../components";
-import Image from "next/image";
 
 const PerfumeView = ({
   id,
