@@ -9,7 +9,6 @@ import {
   MagnifyingGlass,
   PreferenceHorizontalIcon,
 } from "../../components";
-import Image from "next/image";
 
 const PerfumeView = ({
   id,
@@ -36,6 +35,7 @@ const PerfumeView = ({
 
 export default function () {
   const scents = useContext(ScentContext);
+
   const [scentChoice, setScentChoice] = useState(null);
   return (
     <main className={styles.container}>

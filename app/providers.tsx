@@ -30,6 +30,13 @@ const initialScents = {
 
 const scentReducer = (scents: ScentType, action: any) => {
   switch (action.type) {
+    case "init": {
+      return {
+        library: action.payload.library || [],
+        wishlist: action.payload.wishlist || [],
+        scentOfTheDay: action.payload.scentOfTheDay || [],
+      };
+    }
     case "library:add": {
       const newLibrary = [...scents.library, action.payload];
       return { ...scents, library: newLibrary };

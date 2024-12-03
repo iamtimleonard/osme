@@ -37,36 +37,114 @@ const X = () => (
   </svg>
 );
 
-const PerfumeView = ({
-  id,
-  name,
-  house,
-  topNotes,
-  heartNotes,
-  baseNotes,
-  image,
-  setScentChoice,
-}) => {
+const PerfumeView = ({ id, name, house, image, setScentChoice }) => {
+  const [topNotes, setTopNotes] = useState("");
+  const [heartNotes, setHeartNotes] = useState("");
+  const [baseNotes, setBaseNotes] = useState("");
+  const [description, setDescription] = useState("");
   const dispatch = useContext(ScentReducerContext);
 
-  const libraryAdd = () => {
+  const libraryAdd = async () => {
     dispatch({
       type: "library:add",
-      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    });
+    const request = {
+      action: "add",
+      field: "library",
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    };
+    const res = await fetch(`http://localhost:8080/user/1`, {
+      method: "POST",
+      body: JSON.stringify(request),
     });
   };
 
-  const wishlistAdd = () => {
+  const wishlistAdd = async () => {
     dispatch({
       type: "wishlist:add",
-      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    });
+
+    const request = {
+      action: "add",
+      field: "wishlist",
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    };
+    const res = await fetch(`http://localhost:8080/user/1`, {
+      method: "POST",
+      body: JSON.stringify(request),
     });
   };
 
-  const scentOfTheDayAdd = () => {
+  const scentOfTheDayAdd = async () => {
     dispatch({
       type: "scentOfTheDay:add",
-      payload: { id, name, house, topNotes, heartNotes, baseNotes, image },
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    });
+
+    const request = {
+      action: "add",
+      field: "scentOfTheDay",
+      payload: {
+        id,
+        name,
+        house,
+        topNotes: topNotes.split(", "),
+        heartNotes: heartNotes.split(", "),
+        baseNotes: baseNotes.split(", "),
+        description,
+        image,
+      },
+    };
+    const res = await fetch(`http://localhost:8080/user/1`, {
+      method: "POST",
+      body: JSON.stringify(request),
     });
   };
 
@@ -76,29 +154,58 @@ const PerfumeView = ({
       <h3>{name}</h3>
       <p>{house}</p>
       <img src={image} alt={name} className={styles.image} />
-      <p>Top notes: {topNotes?.join(", ")}</p>
-      <p>Heart notes: {heartNotes?.join(", ")}</p>
-      <p>Base notes: {baseNotes?.join(", ")}</p>
+      <p>
+        Top notes:{" "}
+        <input
+          className={styles.scentInput}
+          value={topNotes}
+          onChange={(e) => setTopNotes(e.target.value)}
+        />
+      </p>
+      <p>
+        Heart notes:{" "}
+        <input
+          className={styles.scentInput}
+          value={heartNotes}
+          onChange={(e) => setHeartNotes(e.target.value)}
+        />
+      </p>
+      <p>
+        Base notes:{" "}
+        <input
+          className={styles.scentInput}
+          value={baseNotes}
+          onChange={(e) => setBaseNotes(e.target.value)}
+        />
+      </p>
+      <p>
+        Description:
+        <textarea
+          className={styles.scentInput}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </p>
       <button
+        className={styles.addButton}
         onClick={() => {
           libraryAdd();
-          alert("added to library!");
         }}
       >
         Add to library
       </button>
       <button
+        className={styles.addButton}
         onClick={() => {
           wishlistAdd();
-          alert("added to wishlist!");
         }}
       >
         Add to wishlist
       </button>
       <button
+        className={styles.addButton}
         onClick={() => {
           scentOfTheDayAdd();
-          alert("added scent of the day@!");
         }}
       >
         Add Scent of the day
@@ -112,7 +219,7 @@ const ListSearch = ({ setScentChoice }) => {
   const [scentList, setScentList] = useState([]);
 
   const handleInput = async () => {
-    const res = await fetch(`${process.env.API_HOST}/scents`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/scents`);
     const scents = await res.json();
     setScentList(scents);
   };
@@ -157,9 +264,6 @@ export default function () {
           name={scentChoice.name}
           house={scentChoice.house}
           image={scentChoice.image}
-          topNotes={scentChoice.topNotes}
-          heartNotes={scentChoice.heartNotes}
-          baseNotes={scentChoice.baseNotes}
           setScentChoice={setScentChoice}
         />
       ) : (

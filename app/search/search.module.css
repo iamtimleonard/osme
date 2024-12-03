@@ -112,3 +112,20 @@
 .image {
   height: 125px;
 }
+
+.addButton {
+  background-color: var(--secondary-green);
+  color: var(--main-white);
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 0.8rem auto;
+  display: block;
+  width: 90%;
+  text-decoration: none;
+}
+
+.scentInput {
+  border: 1px solid var(--medium-dark-gray);
+  border-radius: 5px;
+  width: 100%;
+}
